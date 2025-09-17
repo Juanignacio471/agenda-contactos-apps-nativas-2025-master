@@ -7,3 +7,4 @@ export interface User {
     userName: string,
     password: string
 }
+export type NewUser = Omit<User,"id">;

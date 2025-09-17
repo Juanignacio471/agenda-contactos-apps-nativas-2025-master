@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Spinner } from '../../components/spinner/spinner';
-import { UserService } from '../../services/user.service';
-
+import { UsersService } from '../../services/userService';
 @Component({
   selector: 'app-register-page',
   imports: [RouterModule, FormsModule, Spinner],
@@ -12,7 +11,7 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterPage {
 errorRegister=false;
-userService= inject(UserService);
+userService = inject(UsersService);
 isloading= false;
 router = inject(Router)
 
@@ -24,8 +23,7 @@ router = inject(Router)
       return;
     }
     this.isloading = true;
-    const formValue = (form as { value: any }).value;
-    const res = await this.userService.register(formValue);
+    const res = await this.userService.register(form.value);
     if(res.ok){
       this.router.navigate(["/login"]);
       this.isloading = false;

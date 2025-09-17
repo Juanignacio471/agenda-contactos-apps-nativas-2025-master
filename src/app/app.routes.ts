@@ -5,11 +5,14 @@ import { ContactDetailsPage } from './pages/contact-details-page/contact-details
 import { LoggedLayout } from './layouts/logged-layout/logged-layout';
 import { GroupsPage } from './pages/groups/groups';
 import { RegisterPage } from './pages/register-page/register-page';
+import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
+import { onlyPublicUserGuard } from './guards/only-public-user-guard';
 
 export const routes: Routes = [
   {
     path: "login",
     component: LoginPage
+
   },
   {
     path: "register",
