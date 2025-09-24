@@ -1,35 +1,39 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Spinner } from '../../components/spinner/spinner';
 import { UsersService } from '../../services/userService';
+
 @Component({
   selector: 'app-register-page',
-  imports: [RouterModule, FormsModule, Spinner],
+  imports: [RouterModule,FormsModule,Spinner],
   templateUrl: './register-page.html',
-  styleUrls: ['./register-page.scss']
+  styleUrl: './register-page.scss'
 })
 export class RegisterPage {
-errorRegister=false;
-userService = inject(UsersService);
-isloading= false;
-router = inject(Router)
+  errorRegister=false;
+  usersService = inject(UsersService);
+  isLoading = false;
+  router = inject(Router);
 
- async register(form: any){
-    console.log(form);
-    this.errorRegister = false;
-    if(!form.email || !form.password || !form.password2 || form.password !== form.password2){
+  async register(form: NgForm){
+    this.errorRegister = false; //Elimino el mensaje de error
+    // Hago validación extra sobre el formulario
+    if(!form.value.email || 
+      !form.value.password || 
+      !form.value.password2 || 
+      !form.value.firstName ||
+      !form.value.lastName ||
+      form.value.password !== form.value.password2){
       this.errorRegister = true;
-      return;
+      return
     }
-    this.isloading = true;
-    const res = await this.userService.register(form.value);
+    this.isLoading = true;
+    const res = await this.usersService.register(form.value);
     if(res.ok){
-      this.router.navigate(["/login"]);
-      this.isloading = false;
-      return;
+      this.router.navigate(["/login"])
     }
-    this.isloading = false;
+    this.isLoading = false;
     this.errorRegister = true;
   }
 }

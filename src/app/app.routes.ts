@@ -7,6 +7,7 @@ import { GroupsPage } from './pages/groups/groups';
 import { RegisterPage } from './pages/register-page/register-page';
 import { onlyLoggedUserGuard } from './guards/only-logged-user-guard';
 import { onlyPublicUserGuard } from './guards/only-public-user-guard';
+import { NewEditContact } from './pages/new-edit-contact/new-edit-contact';
 
 export const routes: Routes = [
   {
@@ -23,12 +24,16 @@ export const routes: Routes = [
     component: LoggedLayout,
     children: [
       {
+        path:"",
+        component:NewEditContact,
+      },
+      {
         path: "",
         component: ContactsPage
       },
       {
-        path: "contacts/:id",
-        component: ContactDetailsPage
+        path: "contacts/:id/edit",
+        component: NewEditContact
       },
       {
         path: "groups",
