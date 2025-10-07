@@ -19,4 +19,5 @@ export class ContactsPage implements OnInit {
 
   authService = inject(AuthService);
   contactsService = inject(ContactsService);
+
 }
