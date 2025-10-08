@@ -13,20 +13,18 @@ export class LoggedLayout {
 
  openloggoutModal(){
     Swal.fire({
-      title: "¿desea cerrar sesión?",
+      title: "¿Desea cerrar sesión?",
       showDenyButton: true,
       showCancelButton: true,
       showConfirmButton: false,
       confirmButtonText: "Cancelar",
       denyButtonText: `Cerrar sesión `
      }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Saved!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+      // Reviso si el usuario hizo clic en "Cerrar sesión" y ejecuto logout.
+      if (result.isDenied) {
+        this.authService.logout();
       }
-     });
+    });
  }
 }
 

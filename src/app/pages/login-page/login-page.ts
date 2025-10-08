@@ -6,7 +6,7 @@ import { Spinner } from "../../components/spinner/spinner";
 
 @Component({
   selector: 'app-login-page',
-  imports: [RouterModule, FormsModule],
+  imports: [RouterModule, FormsModule, Spinner],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss'
 })
